@@ -1,24 +1,347 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="TrebuchetMS.ttf">
+            <string>TrebuchetMS</string>
+        </array>
+        <array key="TrebuchetMSBold.ttf">
+            <string>TrebuchetMS-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Ib Calendar Data Source-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JTCalendarTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1LK-uU-gLA" userLabel="PadLabel">
+                                <rect key="frame" x="20" y="25" width="374" height="80"/>
+                                <color key="backgroundColor" red="0.78079307080000004" green="0.88556492330000003" blue="0.93335229159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="0aq-HX-M8d"/>
+                                    <constraint firstAttribute="height" constant="80" id="iKb-UA-cN6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Current Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.34999999403953552" translatesAutoresizingMaskIntoConstraints="NO" id="7UP-W7-GIN" userLabel="mainDisplay">
+                                <rect key="frame" x="35" y="35" width="344" height="60"/>
+                                <color key="backgroundColor" red="0.78079307080000004" green="0.88556492330000003" blue="0.93335229159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="HeT-ci-7jb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="38"/>
+                                <color key="textColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="1" height="-1"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QwW-KD-KP8" userLabel="calendarPopover">
+                                <rect key="frame" x="15" y="120" width="384" height="572"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Qy-x5-yfe" userLabel="Year+-">
+                                        <rect key="frame" x="15" y="10.666666666666657" width="102" height="25"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fB-xc-Eiz">
+                                                <rect key="frame" x="0.0" y="0.0" width="30" height="25"/>
+                                                <state key="normal" title=" " image="leftArrow">
+                                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="minusYearBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Awl-8D-iZT"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhS-On-eeZ">
+                                                <rect key="frame" x="30" y="0.0" width="42" height="25"/>
+                                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
+                                                <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aK7-XW-gQX">
+                                                <rect key="frame" x="72" y="0.0" width="30" height="25"/>
+                                                <state key="normal" title=" " image="rightArrow">
+                                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="plusYearBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c2G-dj-3Uk"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OSz-VQ-LXV">
+                                        <rect key="frame" x="300" y="7.3333333333333286" width="64" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="gfO-Fj-1YW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
+                                        <state key="normal" title="  Today  ">
+                                            <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="calTodayBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FMr-l6-5b5"/>
+                                        </connections>
+                                    </button>
+                                    <stackView contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ewz-qH-gzU" userLabel="calendarStack">
+                                        <rect key="frame" x="15" y="50" width="354.66666666666669" height="346"/>
+                                        <subviews>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Zqu-LK-31z" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
+                                                <rect key="frame" x="0.0" y="0.0" width="354.66666666666669" height="300"/>
+                                                <color key="backgroundColor" red="0.9215705394744873" green="0.92157328128814697" blue="0.92157948017120361" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="300" id="t5h-8L-pv0"/>
+                                                </constraints>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="urI-hV-rcs">
+                                                    <size key="itemSize" width="131" height="135"/>
+                                                    <size key="headerReferenceSize" width="300" height="50"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CustomCell" id="vIq-3m-cHb" customClass="CustomCell" customModule="JTCalendarTest">
+                                                        <rect key="frame" x="300" y="0.0" width="131" height="135"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                            <rect key="frame" x="0.0" y="0.0" width="131" height="135"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jJZ-Nw-ybo" userLabel="selectedView">
+                                                                    <rect key="frame" x="45" y="47" width="40" height="40"/>
+                                                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="40" id="dd1-Uh-9pM"/>
+                                                                        <constraint firstAttribute="height" constant="40" id="o4I-Rf-z2R"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                            <integer key="value" value="10"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rN-9R-uxR">
+                                                                    <rect key="frame" x="41.666666666666657" y="56.666666666666657" width="49" height="23"/>
+                                                                    <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="20"/>
+                                                                    <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </view>
+                                                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstItem="jJZ-Nw-ybo" firstAttribute="centerY" secondItem="vIq-3m-cHb" secondAttribute="centerY" id="3DH-XD-nyo"/>
+                                                            <constraint firstItem="1rN-9R-uxR" firstAttribute="centerY" secondItem="vIq-3m-cHb" secondAttribute="centerY" id="DVQ-eN-xH9"/>
+                                                            <constraint firstItem="jJZ-Nw-ybo" firstAttribute="centerX" secondItem="vIq-3m-cHb" secondAttribute="centerX" id="F1j-q7-hpk"/>
+                                                            <constraint firstItem="1rN-9R-uxR" firstAttribute="centerX" secondItem="vIq-3m-cHb" secondAttribute="centerX" id="dtK-66-65b"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <outlet property="dateLabel" destination="1rN-9R-uxR" id="wVB-AI-pen"/>
+                                                            <outlet property="selectedView" destination="jJZ-Nw-ybo" id="zGy-Rt-T2z"/>
+                                                        </connections>
+                                                    </collectionViewCell>
+                                                </cells>
+                                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="proRateHeader" id="GcN-8w-NeH" customClass="calendarHeaderClass" customModule="JTCalendarTest" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="N66-xr-zPl" userLabel="dayNameStack">
+                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQW-NB-JbM">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="43" height="50"/>
+                                                                    <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                                                                    <color key="textColor" red="0.0" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fea-7f-dqb">
+                                                                    <rect key="frame" x="43" y="0.0" width="42.666666666666657" height="50"/>
+                                                                    <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                                                                    <color key="textColor" red="0.0" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfU-AV-i2f">
+                                                                    <rect key="frame" x="85.666666666666671" y="0.0" width="43.000000000000014" height="50"/>
+                                                                    <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                                                                    <color key="textColor" red="0.0" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shG-QO-3g5">
+                                                                    <rect key="frame" x="128.66666666666666" y="0.0" width="42.666666666666657" height="50"/>
+                                                                    <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                                                                    <color key="textColor" red="0.0" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thr" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaq-EQ-fRc">
+                                                                    <rect key="frame" x="171.33333333333334" y="0.0" width="43" height="50"/>
+                                                                    <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                                                                    <color key="textColor" red="0.0" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPL-HF-J5d">
+                                                                    <rect key="frame" x="214.33333333333334" y="0.0" width="42.666666666666657" height="50"/>
+                                                                    <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                                                                    <color key="textColor" red="0.0" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PId-Cf-ajl">
+                                                                    <rect key="frame" x="257" y="0.0" width="43" height="50"/>
+                                                                    <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                                                                    <color key="textColor" red="0.0" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="50" id="tx8-8b-dAH"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="N66-xr-zPl" firstAttribute="leading" secondItem="GcN-8w-NeH" secondAttribute="leading" id="MuE-7e-Qkm"/>
+                                                        <constraint firstAttribute="trailing" secondItem="N66-xr-zPl" secondAttribute="trailing" id="ebE-zN-Lq1"/>
+                                                        <constraint firstItem="N66-xr-zPl" firstAttribute="top" secondItem="GcN-8w-NeH" secondAttribute="top" id="pZ7-Dt-sA9"/>
+                                                    </constraints>
+                                                </collectionReusableView>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="ibCalendarDataSource" destination="BYZ-38-t0r" id="6N1-jC-eNF"/>
+                                                    <outlet property="ibCalendarDelegate" destination="BYZ-38-t0r" id="Wpt-Fz-r8P"/>
+                                                </connections>
+                                            </collectionView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zrd-LL-jmW" userLabel="btnSetCalDate">
+                                                <rect key="frame" x="0.0" y="310" width="354.66666666666669" height="36"/>
+                                                <color key="backgroundColor" red="0.0" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="36" id="gAh-ub-mOg"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="17"/>
+                                                <state key="normal" title="Set Start Date">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="setStartDateBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZyZ-jL-aOM"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="346" id="ht4-GG-bVP"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pc1-b0-V9C" userLabel="Month+_">
+                                        <rect key="frame" x="137.66666666666666" y="5" width="108.66666666666666" height="36.333333333333336"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wK-yB-3of">
+                                                <rect key="frame" x="0.0" y="0.0" width="30" height="36.333333333333336"/>
+                                                <state key="normal" title=" " image="leftArrow">
+                                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="minusMonthBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K3R-lI-WCg"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dec" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqG-tv-EBh">
+                                                <rect key="frame" x="29.999999999999996" y="0.0" width="48.666666666666657" height="36.333333333333336"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="36" id="YXz-aC-irF"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="28"/>
+                                                <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbb-q9-D6A">
+                                                <rect key="frame" x="78.666666666666686" y="0.0" width="30" height="36.333333333333336"/>
+                                                <state key="normal" title=" " image="rightArrow">
+                                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="plusMonthBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EkE-zO-BcP"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ewz-qH-gzU" firstAttribute="leading" secondItem="QwW-KD-KP8" secondAttribute="leading" constant="15" id="CiR-uN-Z4B"/>
+                                    <constraint firstItem="ewz-qH-gzU" firstAttribute="top" secondItem="QwW-KD-KP8" secondAttribute="top" constant="50" id="FEl-0e-IAV"/>
+                                    <constraint firstItem="OSz-VQ-LXV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QwW-KD-KP8" secondAttribute="leading" constant="20" symbolic="YES" id="GPn-DN-Ot9"/>
+                                    <constraint firstItem="6Qy-x5-yfe" firstAttribute="leading" secondItem="QwW-KD-KP8" secondAttribute="leading" constant="15" id="IZ9-We-UPT"/>
+                                    <constraint firstAttribute="trailing" secondItem="OSz-VQ-LXV" secondAttribute="trailing" constant="20" id="LbC-H9-AiT"/>
+                                    <constraint firstItem="pc1-b0-V9C" firstAttribute="centerX" secondItem="QwW-KD-KP8" secondAttribute="centerX" id="UtC-pO-G1e"/>
+                                    <constraint firstAttribute="height" constant="572" id="bbi-pf-ywx"/>
+                                    <constraint firstItem="pc1-b0-V9C" firstAttribute="top" secondItem="QwW-KD-KP8" secondAttribute="top" constant="5" id="iMB-2o-Hsp"/>
+                                    <constraint firstItem="pc1-b0-V9C" firstAttribute="baseline" secondItem="6Qy-x5-yfe" secondAttribute="baseline" id="izj-mu-riz"/>
+                                    <constraint firstAttribute="trailing" secondItem="ewz-qH-gzU" secondAttribute="trailing" constant="15" id="kev-wU-tAU"/>
+                                    <constraint firstItem="OSz-VQ-LXV" firstAttribute="baseline" secondItem="6Qy-x5-yfe" secondAttribute="baseline" id="qmM-hc-77k"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1LK-uU-gLA" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="25" id="2Or-62-ywF"/>
+                            <constraint firstItem="1LK-uU-gLA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="58P-qc-6Nw"/>
+                            <constraint firstItem="QwW-KD-KP8" firstAttribute="top" secondItem="1LK-uU-gLA" secondAttribute="bottom" constant="15" id="JNI-YY-dHx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QwW-KD-KP8" secondAttribute="trailing" constant="15" id="KIC-xH-1AJ"/>
+                            <constraint firstAttribute="trailing" secondItem="1LK-uU-gLA" secondAttribute="trailing" constant="20" id="Q0K-6e-MKb"/>
+                            <constraint firstItem="7UP-W7-GIN" firstAttribute="top" secondItem="1LK-uU-gLA" secondAttribute="top" constant="10" id="SPc-H4-PxK"/>
+                            <constraint firstItem="QwW-KD-KP8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="iNA-a8-i88"/>
+                            <constraint firstItem="7UP-W7-GIN" firstAttribute="trailing" secondItem="1LK-uU-gLA" secondAttribute="trailing" constant="-15" id="idc-Uh-YDb"/>
+                            <constraint firstItem="7UP-W7-GIN" firstAttribute="leading" secondItem="1LK-uU-gLA" secondAttribute="leading" constant="15" id="zST-PM-GMW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="calTodayBtn" destination="OSz-VQ-LXV" id="Kko-y6-TYZ"/>
+                        <outlet property="calendarView" destination="Zqu-LK-31z" id="U9f-cV-odR"/>
+                        <outlet property="headerMonth" destination="uqG-tv-EBh" id="4Z6-5X-lqM"/>
+                        <outlet property="headerYear" destination="rhS-On-eeZ" id="ySd-br-OAO"/>
+                        <outlet property="mainDisplay" destination="7UP-W7-GIN" id="GrT-qw-qgk"/>
+                        <outlet property="padLabel" destination="1LK-uU-gLA" id="fp3-kd-xkx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="leftArrow" width="25" height="25"/>
+        <image name="rightArrow" width="25" height="25"/>
+    </resources>
 </document>
