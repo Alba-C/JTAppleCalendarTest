@@ -101,15 +101,16 @@ class ViewController: UIViewController, JTAppleCalendarViewDataSource, JTAppleCa
         handleCellTextColor(view: cell, cellState: cellState)
         return cell
     }
-    func handleCellConfiguration(cell: JTAppleCell?, cellState: CellState) {
-        handleCellSelected(view: cell, cellState: cellState)
+//    func handleCellConfiguration(cell: JTAppleCell?, cellState: CellState) {
+//        handleCellSelected(view: cell, cellState: cellState)
+//        handleCellTextColor(view: cell, cellState: cellState)
+//
+//    }
+    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
         
-    }
-    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        //            handleCellTextColor(view: cell, cellState: cellState)
-        //            handleCellSelected(view: cell, cellState: cellState)
-        handleCellConfiguration(cell: cell, cellState: cellState)
+       // handleCellConfiguration(cell: cell, cellState: cellState)
         print("DidSelectDate \(calendarView.selectedDates)")
         
     }
@@ -153,6 +154,7 @@ class ViewController: UIViewController, JTAppleCalendarViewDataSource, JTAppleCa
         formatter.dateFormat = "MMM"
         headerMonth.text = formatter.string(from: date)
         // calendarView.selectDates([Date()])
+       
         
     }
  
@@ -194,36 +196,44 @@ class ViewController: UIViewController, JTAppleCalendarViewDataSource, JTAppleCa
         calendarView.scrollToDate(Date())
         calendarView.selectDates([Date()])
     }
-    @IBAction func minusYearBtn(_ sender: UIButton) {
-        let next = userCalendar.date(byAdding: .year, value: -1, to: calendarView.selectedDates[0])!
-        calendarView.scrollToDate(next, animateScroll: false)
-        calendarView.deselectAllDates()
-        calendarView.selectDates([next], triggerSelectionDelegate: true)
-    }
     
-    @IBAction func plusYearBtn(_ sender: UIButton) {
-        let next = userCalendar.date(byAdding: .year, value: 1, to: calendarView.selectedDates[0])!
-        calendarView.scrollToDate(next, animateScroll: false)
-        calendarView.deselectAllDates()
-        calendarView.selectDates([next], triggerSelectionDelegate: true)
+
+    @IBAction func minusYearBtn(_ sender: UIButton) {
+
+        let next = userCalendar.date(byAdding: .year, value: -1, to: calendarView.selectedDates[0])!
+        calendarView.scrollToDate(next, animateScroll: true)
+        {self.calendarView.selectDates([next], triggerSelectionDelegate: true)}
+        
         
     }
     
+    
+    @IBAction func plusYearBtn(_ sender: UIButton) {
+
+        let next = userCalendar.date(byAdding: .year, value: 1, to: calendarView.selectedDates[0])!
+        calendarView.scrollToDate(next, animateScroll: true)
+        { self.calendarView.selectDates([next], triggerSelectionDelegate: true)}
+    }
+    
     @IBAction func minusMonthBtn(_ sender: UIButton) {
+
         let next = userCalendar.date(byAdding: .month, value: -1, to: calendarView.selectedDates[0])!
-        calendarView.scrollToDate(next, animateScroll: false)
-        calendarView.selectDates([next], triggerSelectionDelegate: true)
+        
+        calendarView.scrollToDate(next, animateScroll: true){self.calendarView.selectDates([next], triggerSelectionDelegate: true)}
+        
+
     }
     
     @IBAction func plusMonthBtn(_ sender: UIButton) {
+
         let next = userCalendar.date(byAdding: .month, value: 1, to: calendarView.selectedDates[0])!
-        calendarView.selectDates([next], triggerSelectionDelegate: true)
-        calendarView.scrollToDate(next, animateScroll: false)
+       calendarView.scrollToDate(next, animateScroll: true){self.calendarView.selectDates([next], triggerSelectionDelegate: true)}
+
     }
     
     override func viewDidLoad() {
         setupCalendarView()
-        calendarView.scrollToDate(Date())
+        calendarView.scrollToDate(Date(), animateScroll: false)
         calendarView.selectDates([Date()])
         
         padLabel.layer.masksToBounds = true
